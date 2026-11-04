@@ -1,44 +1,114 @@
 <!--
 author:   Jan Vanvinkenroye
 email:    jan.vanvinkenroye@tik.uni-stuttgart.de
-version:  1.0.0
+version:  1.1.1
 language: de
 narrator: Deutsch Female
 mode:     Textbook
+logo:     img/eh-logo.svg
 
 comment:  Selbstlerneinheit fuer Studierende der Sozialen Arbeit: den
           Medienkompetenzbegriff nach Dieter Baacke erarbeiten, an Faellen
           anwenden, kritisch einordnen und daraus eigene Lernziele und ein
           medienpaedagogisches Angebot entwickeln. Dauer ca. 150 Minuten.
 
+link:     https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300;400;500;600&display=swap
+
 @style
-.box {
-  border-left: 5px solid #1e88e5;
-  background: rgba(30, 136, 229, 0.08);
+/* Gestaltung nach dem Typst-Template ehlb-handout (EH Ludwigsburg):
+   EH-Gruen #098C49, Dunkelgruen #054926, Gruen-Tints, Textgrau #575756,
+   Barlow Semi Condensed als freier Ersatz fuer GT Walsheim Pro Condensed. */
+:root, :root.lia-theme-default {
+  --color-highlight:      9, 140, 73;
+  --color-highlight-dark: 5, 73, 38;
+  --color-highlight-menu: 9, 140, 73;
+  --color-accent:         rgb(9, 140, 73);
+  --global-font-family:   "Barlow Semi Condensed", "Barlow", Arial, sans-serif;
+  --global-font-headline: "Barlow Semi Condensed", "Barlow", Arial, sans-serif;
+  --eh-gruen:       #098C49;
+  --eh-dunkelgruen: #054926;
+  --eh-hellgruen:   #CEE8DB;
+  --eh-mintgruen:   #BADFCC;
+  --eh-grau:        #575756;
+  --eh-anthrazit:   #212529;
+  --eh-linie:       #DEE2E6;
+}
+:root.lia-variant-light { --color-text: 87, 87, 86; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--global-font-headline) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0;
+}
+/* Folientitel gruen wie der Handout-Titel, Zwischentitel dunkelgruen */
+main h1, main h2 { color: var(--eh-gruen); }
+main h3, main h4 { color: var(--eh-dunkelgruen); }
+main ul > li::marker { color: var(--eh-gruen); }
+main ol > li::marker { color: var(--eh-gruen); font-weight: 500; }
+.lia-table .lia-table__header { background: var(--eh-hellgruen) !important; color: var(--eh-anthrazit); }
+.lia-variant-dark .lia-table .lia-table__header { background: rgba(9, 140, 73, 0.3) !important; color: inherit; }
+main strong, main b { font-weight: 500; }
+main a { color: var(--eh-gruen); }
+
+main blockquote {
+  border-left: 3px solid var(--eh-gruen);
+  background: rgba(206, 232, 219, 0.35);
   padding: 0.6rem 1rem;
-  margin: 1rem 0;
-  border-radius: 4px;
 }
-.box.warn    { border-color: #f57c00; background: rgba(245, 124, 0, 0.08); }
-.box.ok      { border-color: #43a047; background: rgba(67, 160, 71, 0.08); }
-.box.study   { border-color: #8e24aa; background: rgba(142, 36, 170, 0.08); }
+
+/* ehlb-box: heller Infokasten mit gruenem Balken */
+.box {
+  border-left: 3px solid var(--eh-gruen);
+  background: #DDEFE6;
+  padding: 10px 12px;
+  margin: 1em 0;
+}
+.box b:first-child { color: var(--eh-dunkelgruen); }
+/* ehlb-wichtig: dunkelgruener Hinweis, weisse Schrift */
+.box.warn { border-left: 0; background: var(--eh-dunkelgruen); color: white; }
+.box.warn b:first-child, .box.warn b, .box.warn i { color: white; }
+/* Merksatz: Mintgruen */
+.box.ok { background: var(--eh-mintgruen); border-left-color: var(--eh-dunkelgruen); }
+/* Arbeitsauftrag: weiss mit Linie */
+.box.study { background: transparent; border: 1px solid var(--eh-linie); border-left: 3px solid var(--eh-gruen); }
+.lia-variant-dark .box, .lia-variant-dark .box.ok { background: rgba(9, 140, 73, 0.18); color: inherit; }
+.lia-variant-dark .box.study { background: transparent; }
+
+/* ehlb-label: gruener Chip */
 .dim {
+  display: inline-block;
+  background: var(--eh-gruen);
   color: white;
-  padding: 0.8rem 1rem;
-  margin: 0.4rem 0;
-  border-radius: 6px;
-  font-weight: bold;
+  font-weight: 500;
+  padding: 5px 10px;
+  margin: 0.2em 0 0.6em 0;
 }
-.dim.kritik    { background: #c62828; }
-.dim.kunde     { background: #1565c0; }
-.dim.nutzung   { background: #2e7d32; }
-.dim.gestaltung{ background: #6a1b9a; }
+
+/* Kopf der Startseite wie Seite 1 des Handouts */
+.eh-kopf {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 1rem; flex-wrap: wrap;
+  border-bottom: 1px solid var(--eh-linie); padding-bottom: 0.8rem; margin-bottom: 1rem;
+}
+.eh-kopf img { width: 150px; max-width: 45%; }
+.eh-meta { text-align: right; font-size: 0.9em; color: var(--eh-grau); line-height: 1.4; }
+.eh-untertitel { font-size: 1.25em; font-weight: 300; color: var(--eh-grau); margin-top: -0.4em; }
 @end
 -->
 
 # Medienkompetenz nach Dieter Baacke
 
-**Selbstlerneinheit für Studierende der Sozialen Arbeit**
+<div class="eh-untertitel">Selbstlerneinheit für Studierende der Sozialen Arbeit</div>
+
+<div class="eh-kopf">
+<img src="img/eh-logo.svg" alt="Logo der Evangelischen Hochschule Ludwigsburg">
+<div class="eh-meta">
+Selbstlerneinheit Medienpädagogik<br>
+Jan Vanvinkenroye<br>
+Ca. 150 Minuten
+</div>
+</div>
+
 
 Medien sind aus der Lebenswelt der Adressat\*innen Sozialer Arbeit nicht wegzudenken: Gruppenchats im Jugendtreff, Videotelefonie mit Angehörigen im Pflegeheim, Online-Formulare beim Jobcenter, Desinformation im Familien-Chat. Fachkräfte der Sozialen Arbeit brauchen deshalb ein Modell, mit dem sie beschreiben können, *was* Menschen im Umgang mit Medien können sollten – und *wie* sich das fördern lässt.
 
@@ -65,17 +135,17 @@ Willkommen zur Selbstlerneinheit Medienkompetenz nach Dieter Baacke. Du erarbeit
 
 **Ablauf und Zeitbedarf**
 
-| Abschnitt                          | Zeit (ca.) |
+| Abschnitt                          | Zeit       |
 | :--------------------------------- | ---------: |
-| 1 Einstieg: Mein Medienalltag      |    10 Min. |
-| 2 Woher kommt der Begriff?         |    15 Min. |
-| 3 Die vier Dimensionen             |    30 Min. |
-| 4 Anwendung: Fälle aus der Praxis  |    20 Min. |
-| 5 Kritik und Weiterentwicklungen   |    15 Min. |
-| 6 Lernziele formulieren            |    20 Min. |
-| 7 Eigenes Angebot entwickeln       |    35 Min. |
-| 8 Abschluss                        |     5 Min. |
-| **Gesamt**                         | **150 Min.** |
+| 1 Einstieg: Mein Medienalltag      | ca. 10 Min. |
+| 2 Woher kommt der Begriff?         | ca. 15 Min. |
+| 3 Die vier Dimensionen             | ca. 30 Min. |
+| 4 Anwendung: Fälle aus der Praxis  | ca. 20 Min. |
+| 5 Kritik und Weiterentwicklungen   | ca. 15 Min. |
+| 6 Lernziele formulieren            | ca. 20 Min. |
+| 7 Eigenes Angebot entwickeln       | ca. 35 Min. |
+| 8 Abschluss                        | ca. 5 Min. |
+| **Gesamt**                         | **ca. 150 Min.** |
 
 <div class="box warn">
 <b>Wichtig zum Speichern:</b> Deine Eingaben in Textfeldern werden nur lokal in deinem Browser gespeichert. Kopiere deine Lernziele und deine Angebotsskizze (Abschnitt 6 und 7) zusätzlich in ein eigenes Dokument, wenn du sie behalten oder abgeben möchtest.
