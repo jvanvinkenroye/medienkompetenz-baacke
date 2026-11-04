@@ -1,7 +1,7 @@
 <!--
 author:   Jan Vanvinkenroye
 email:    jan.vanvinkenroye@tik.uni-stuttgart.de
-version:  1.1.1
+version:  1.2.0
 language: de
 narrator: Deutsch Female
 mode:     Textbook
@@ -93,6 +93,8 @@ main blockquote {
 .eh-kopf img { width: 150px; max-width: 45%; }
 .eh-meta { text-align: right; font-size: 0.9em; color: var(--eh-grau); line-height: 1.4; }
 .eh-untertitel { font-size: 1.25em; font-weight: 300; color: var(--eh-grau); margin-top: -0.4em; }
+.lia-variant-dark .eh-svg-dunkel { fill: #BADFCC; }
+.lia-variant-dark path.eh-svg-dunkel { fill: none; stroke: #BADFCC; }
 @end
 -->
 
@@ -257,25 +259,51 @@ Vervollständige Baackes Definition: Medienkompetenz ist die Fähigkeit, in die 
 
 Baacke (1996, S. 120) unterscheidet **vier Dimensionen** mit insgesamt **acht Unterdimensionen**, die „prinzipiell jeder Mensch entwickelt haben sollte“ (Hugger 2022, S. 68).
 
-```ascii
-                         +---------------------------+
-                         |     MEDIENKOMPETENZ       |
-                         |      (Baacke 1996)        |
-                         +-------------+-------------+
-                                       |
-        +----------------+-------------+-------------+-------------------+
-        |                |                           |                   |
-+-------+------+ +-------+-------+         +---------+------+   +--------+-------+
-| Medienkritik | |  Medienkunde  |         | Mediennutzung  |   | Mediengestaltung|
-+--------------+ +---------------+         +----------------+   +----------------+
-| analytisch   | | informativ    |         | rezeptiv-      |   | innovativ      |
-| reflexiv     | | instrumentell-|         |   anwendend    |   | kreativ        |
-| ethisch      | | qualifika-    |         | interaktiv-    |   |                |
-|              | | torisch       |         |   anbietend    |   |                |
-+--------------+ +---------------+         +----------------+   +----------------+
-
-  Vermittlung (Kritik, Kunde)               Zielorientierung (Nutzung, Gestaltung)
-```
+<lia-keep>
+<svg viewBox="0 0 1000 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="dim-title dim-desc" style="width:100%;max-width:900px;height:auto;display:block;margin:1rem auto;font-family:'Barlow Semi Condensed',Barlow,Arial,sans-serif">
+<title id="dim-title">Die vier Dimensionen von Medienkompetenz nach Baacke</title>
+<desc id="dim-desc">Medienkompetenz gliedert sich in Medienkritik (analytisch, reflexiv, ethisch), Medienkunde (informativ, instrumentell-qualifikatorisch), Mediennutzung (rezeptiv-anwendend, interaktiv-anbietend) und Mediengestaltung (innovativ, kreativ). Medienkritik und Medienkunde gehoeren zur Vermittlung, Mediennutzung und Mediengestaltung zur Zielorientierung.</desc>
+<rect x="370" y="15" width="260" height="76" fill="#054926"/>
+<text x="500" y="50" text-anchor="middle" font-size="26" font-weight="500" fill="white">Medienkompetenz</text>
+<text x="500" y="76" text-anchor="middle" font-size="17" font-weight="300" fill="white">nach Baacke (1996)</text>
+<g stroke="#098C49" stroke-width="2.5" fill="none"><path d="M500 91 V122 M125 122 H875"/><path d="M125 122 V150"/><path d="M375 122 V150"/><path d="M625 122 V150"/><path d="M875 122 V150"/></g>
+<rect x="20" y="150" width="210" height="52" fill="#098C49"/>
+<text x="125" y="184" text-anchor="middle" font-size="22" font-weight="500" fill="white">Medienkritik</text>
+<rect x="20" y="202" width="210" height="150" fill="#CEE8DB"/>
+<rect x="38" y="227" width="7" height="7" fill="#098C49"/>
+<text x="54" y="238" font-size="18" font-weight="400" fill="#212529">analytisch</text>
+<rect x="38" y="259" width="7" height="7" fill="#098C49"/>
+<text x="54" y="270" font-size="18" font-weight="400" fill="#212529">reflexiv</text>
+<rect x="38" y="291" width="7" height="7" fill="#098C49"/>
+<text x="54" y="302" font-size="18" font-weight="400" fill="#212529">ethisch</text>
+<rect x="270" y="150" width="210" height="52" fill="#098C49"/>
+<text x="375" y="184" text-anchor="middle" font-size="22" font-weight="500" fill="white">Medienkunde</text>
+<rect x="270" y="202" width="210" height="150" fill="#CEE8DB"/>
+<rect x="288" y="227" width="7" height="7" fill="#098C49"/>
+<text x="304" y="238" font-size="18" font-weight="400" fill="#212529">informativ</text>
+<rect x="288" y="259" width="7" height="7" fill="#098C49"/>
+<text x="304" y="270" font-size="18" font-weight="400" fill="#212529">instrumentell-</text>
+<text x="304" y="292" font-size="18" font-weight="400" fill="#212529">qualifikatorisch</text>
+<rect x="520" y="150" width="210" height="52" fill="#098C49"/>
+<text x="625" y="184" text-anchor="middle" font-size="22" font-weight="500" fill="white">Mediennutzung</text>
+<rect x="520" y="202" width="210" height="150" fill="#CEE8DB"/>
+<rect x="538" y="227" width="7" height="7" fill="#098C49"/>
+<text x="554" y="238" font-size="18" font-weight="400" fill="#212529">rezeptiv-anwendend</text>
+<rect x="538" y="259" width="7" height="7" fill="#098C49"/>
+<text x="554" y="270" font-size="18" font-weight="400" fill="#212529">interaktiv-anbietend</text>
+<rect x="770" y="150" width="210" height="52" fill="#098C49"/>
+<text x="875" y="184" text-anchor="middle" font-size="22" font-weight="500" fill="white">Mediengestaltung</text>
+<rect x="770" y="202" width="210" height="150" fill="#CEE8DB"/>
+<rect x="788" y="227" width="7" height="7" fill="#098C49"/>
+<text x="804" y="238" font-size="18" font-weight="400" fill="#212529">innovativ</text>
+<rect x="788" y="259" width="7" height="7" fill="#098C49"/>
+<text x="804" y="270" font-size="18" font-weight="400" fill="#212529">kreativ</text>
+<path d="M20 368 V382 H480 V368" stroke="#054926" stroke-width="2" fill="none" class="eh-svg-dunkel"/>
+<text x="250" y="414" text-anchor="middle" font-size="19" font-weight="500" fill="#054926" class="eh-svg-dunkel">Vermittlung</text>
+<path d="M520 368 V382 H980 V368" stroke="#054926" stroke-width="2" fill="none" class="eh-svg-dunkel"/>
+<text x="750" y="414" text-anchor="middle" font-size="19" font-weight="500" fill="#054926" class="eh-svg-dunkel">Zielorientierung</text>
+</svg>
+</lia-keep>
 
 Baacke (1997) ordnet Medienkritik und Medienkunde eher der **Vermittlung** zu, Mediennutzung und Mediengestaltung der **Zielorientierung** im Handeln der Menschen.
 
