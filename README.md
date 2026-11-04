@@ -1,7 +1,7 @@
 <!--
 author:   Jan Vanvinkenroye
 email:    jan.vanvinkenroye@tik.uni-stuttgart.de
-version:  1.2.1
+version:  1.3.0
 language: de
 narrator: Deutsch Female
 mode:     Textbook
@@ -102,6 +102,59 @@ main blockquote {
 }
 .lia-variant-dark .eh-svg-dunkel { fill: #BADFCC; }
 .lia-variant-dark path.eh-svg-dunkel { fill: none; stroke: #BADFCC; }
+/* Download-Button im Stil ehlb-button (dunkelgruen, weiss, Pfeil) */
+.eh-download {
+  background: var(--eh-dunkelgruen); color: white; border: 0;
+  padding: 10px 16px; font: inherit; font-weight: 500; cursor: pointer;
+}
+.eh-download:hover, .eh-download:focus { background: var(--eh-gruen); }
+.eh-download-status { margin-left: 0.8rem; font-size: 0.9em; }
+@end
+
+@onload
+// Sammelt die Felder des Arbeitsblatts und bietet sie als Textdatei an.
+// Gelesen wird direkt aus dem DOM, weil LiaScript Umfragewerte nicht
+// ueber eine oeffentliche API herausgibt.
+window.ehSkizzeDownload = function (button) {
+  var labels = [
+    "Name",
+    "1 Thema und Titel des Angebots",
+    "2 Zielgruppe",
+    "3 Rahmenbedingungen",
+    "4 Bezug zu Baacke",
+    "5 Lernziele",
+    "6 Ablauf",
+    "7 Material",
+    "8 Umgang mit Schwierigkeiten",
+    "9 Evaluation"
+  ];
+  var root = button.closest("main") || document;
+  var fields = root.querySelectorAll("textarea, input[type='text'], input:not([type])");
+  var status = root.querySelector(".eh-download-status");
+  var values = Array.prototype.map.call(fields, function (f) { return (f.value || "").trim(); });
+  if (values.join("") === "") {
+    if (status) status.textContent = "Die Felder sind noch leer.";
+    return;
+  }
+  var datum = new Date().toLocaleDateString("de-DE");
+  var text = "Angebotsskizze - Medienkompetenz nach Dieter Baacke\n"
+    + "Selbstlerneinheit Medienpaedagogik, EH Ludwigsburg\n"
+    + "Erstellt am " + datum + "\n\n";
+  labels.forEach(function (label, i) {
+    text += "== " + label + " ==\n" + (values[i] || "(leer)") + "\n\n";
+  });
+  var name = (values[0] || "").toLowerCase()
+    .replace(/[äöüß]/g, function (c) { return {"ä":"ae","ö":"oe","ü":"ue","ß":"ss"}[c]; })
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "angebotsskizze" + (name ? "-" + name : "") + ".txt";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  if (status) status.textContent = "Datei wurde heruntergeladen.";
+};
 @end
 -->
 
@@ -157,7 +210,7 @@ Willkommen zur Selbstlerneinheit Medienkompetenz nach Dieter Baacke. Du erarbeit
 | **Gesamt**                         | **ca. 150 Min.** |
 
 <div class="box warn">
-<b>Wichtig zum Speichern:</b> Deine Eingaben in Textfeldern werden nur lokal in deinem Browser gespeichert. Kopiere deine Lernziele und deine Angebotsskizze (Abschnitt 6 und 7) zusätzlich in ein eigenes Dokument, wenn du sie behalten oder abgeben möchtest.
+<b>Wichtig zum Speichern:</b> Deine Eingaben in Textfeldern werden nur lokal in deinem Browser gespeichert. Deine Angebotsskizze (Abschnitt 7) kannst du mit einem Button als Textdatei herunterladen und in Moodle abgeben. Deine Lernziele aus Abschnitt 6 kopierst du bei Bedarf selbst in ein eigenes Dokument.
 </div>
 
 
@@ -718,7 +771,11 @@ Ergänzend kann der sozialpädagogische Dreiklang aus **Prävention, Partizipati
 
 ## Arbeitsblatt: Mein Angebot
 
-Fülle die Felder aus. Stichpunkte genügen. **Denke daran, die Ergebnisse zu kopieren.**
+Fülle die Felder aus. Stichpunkte genügen. Am Ende lädst du deine Skizze als Textdatei herunter und gibst sie in der **Moodle-Aufgabe** ab.
+
+**Dein Name**
+
+    [[___]]
 
 **1 Thema und Titel des Angebots**
 
@@ -755,6 +812,14 @@ Fülle die Felder aus. Stichpunkte genügen. **Denke daran, die Ergebnisse zu ko
 **9 Evaluation**: Woran erkennst du, dass deine Lernziele erreicht wurden?
 
     [[___ ___ ___]]
+
+<div class="box">
+<b>Abgeben:</b> Klicke auf den Button, um alle Felder dieser Seite als Textdatei zu speichern. Lade die Datei anschließend in der Moodle-Aufgabe zur Angebotsskizze hoch. Du musst die Felder dafür nicht einzeln abschicken.
+</div>
+
+<lia-keep>
+<p><button class="eh-download" onclick="window.ehSkizzeDownload(this)">Meine Angebotsskizze herunterladen &rarr;</button><span class="eh-download-status" role="status"></span></p>
+</lia-keep>
 
 
 ## Selbstcheck: Mein Angebot
